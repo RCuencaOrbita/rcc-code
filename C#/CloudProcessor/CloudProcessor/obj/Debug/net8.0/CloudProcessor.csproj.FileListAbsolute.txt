@@ -1,0 +1,14 @@
+C:\Repos\CloudProcessor\CloudProcessor\bin\Debug\net8.0\CloudProcessor.exe
+C:\Repos\CloudProcessor\CloudProcessor\bin\Debug\net8.0\CloudProcessor.deps.json
+C:\Repos\CloudProcessor\CloudProcessor\bin\Debug\net8.0\CloudProcessor.runtimeconfig.json
+C:\Repos\CloudProcessor\CloudProcessor\bin\Debug\net8.0\CloudProcessor.dll
+C:\Repos\CloudProcessor\CloudProcessor\bin\Debug\net8.0\CloudProcessor.pdb
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\CloudProcessor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\CloudProcessor.AssemblyInfoInputs.cache
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\CloudProcessor.AssemblyInfo.cs
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\CloudProcessor.csproj.CoreCompileInputs.cache
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\CloudProcessor.dll
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\refint\CloudProcessor.dll
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\CloudProcessor.pdb
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\CloudProcessor.genruntimeconfig.cache
+C:\Repos\CloudProcessor\CloudProcessor\obj\Debug\net8.0\ref\CloudProcessor.dll
