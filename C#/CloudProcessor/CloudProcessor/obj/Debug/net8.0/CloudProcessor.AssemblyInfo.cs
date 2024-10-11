@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CloudProcessor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+264c060e82d6e429b4921822c27596042ed76136")]
 [assembly: System.Reflection.AssemblyProductAttribute("CloudProcessor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CloudProcessor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

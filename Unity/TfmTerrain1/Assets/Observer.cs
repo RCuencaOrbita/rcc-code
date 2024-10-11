@@ -2,107 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.IO;
-using UnityEngine.InputSystem.HID;
-using System.Drawing;
 using System.Linq;
-
-//public class Observer : MonoBehaviour
-//{
-//    public float cubeSize = 6.0f;
-//    public int pointsPerAxis = 20;  // Número de puntos a muestrear por eje
-//    public LayerMask terrainLayer;   // Capa que representa el terreno
-
-//    private List<Vector3> pointCloud = new List<Vector3>();
-//    private Terrain terrain; // Referencia al objeto Terrain
-
-//    void Start()
-//    {
-//        // Encuentra el objeto Terrain en la escena
-//        terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-
-//        if (terrain == null)
-//        {
-//            Debug.LogError("No se encontró un objeto Terrain en la escena.");
-//        }
-//    }
-//    float lastObservation = 0;
-//    void Update()
-//    {
-//        if (Time.time - lastObservation < 10)
-//        {
-//            return;
-//        }
-//        lastObservation = Time.time;
-//        if (terrain == null)
-//        {
-//            return;
-//        }
-
-//        // Actualiza la posición del cubo a la posición actual del vehículo
-//        Vector3 center = transform.position;
-
-//        // Limpia la nube de puntos anterior
-//        pointCloud.Clear();
-
-//        // Recorre el volumen definido por el cubo para realizar muestreos
-//        float halfSize = cubeSize / 2.0f;
-//        float stepSize = cubeSize / pointsPerAxis;
-
-//        for (int x = 0; x < pointsPerAxis; x++)
-//        {
-//            for (int y = 0; y < pointsPerAxis; y++)
-//            {
-//                for (int z = 0; z < pointsPerAxis; z++)
-//                {
-//                    // Calcula la posición de cada punto de muestreo dentro del cubo
-//                    Vector3 point = new Vector3(
-//                        center.x + (x * stepSize - halfSize),
-//                        center.y + (y * stepSize - halfSize),
-//                        center.z + (z * stepSize - halfSize)
-//                    );
-
-//                    // Ajusta la posición Y según la altura del terreno en el punto X,Z
-//                    point.y = terrain.SampleHeight(point) + terrain.GetPosition().y;
-
-//                    // Agrega el punto a la nube de puntos si está dentro del terreno
-//                    pointCloud.Add(point);
-//                }
-//            }
-//        }
-
-//        // Opcional: Guardar la nube de puntos en un archivo o utilizarla de alguna manera
-//        SavePointCloud();
-//    }
-
-//    void SavePointCloud()
-//    {
-//        // Ejemplo de cómo guardar la nube de puntos en un archivo (formato XYZ)
-//        string filePath = "c:\\data\\pointCloud" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".txt";
-//        using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath))
-//        {
-//            foreach (Vector3 point in pointCloud)
-//            {
-//                file.WriteLine($"{point.x} {point.y} {point.z}");
-//            }
-//        }
-//    }
-
-//    void OnDrawGizmos()
-//    {
-//        // Dibujar el cubo de observación en la escena para visualizar el área de muestreo
-//        Gizmos.color = Color.green;
-//        Gizmos.DrawWireCube(transform.position, Vector3.one * cubeSize);
-
-//        // Dibujar los puntos de la nube de puntos
-//        Gizmos.color = Color.red;
-//        foreach (Vector3 point in pointCloud)
-//        {
-//            Gizmos.DrawSphere(point, 0.1f);
-//        }
-//    }
-//}
-//##############################################################
-
 
 public class Observer : MonoBehaviour
 {
@@ -186,7 +86,7 @@ public class Observer : MonoBehaviour
         // proyectar los puntos de contacto en el eje de coordenadas del cubo
         for (int i = 0; i < contacts.Count; i++)
         {
-            if (contacts[i]== Vector3.zero)
+            if (contacts[i] == Vector3.zero)
             {
                 continue;
             }
@@ -195,8 +95,7 @@ public class Observer : MonoBehaviour
             float forwardProjection = Vector3.Dot(contacts[i], vehicleForward);
             float rightProjection = Vector3.Dot(contacts[i], vehicleRight);
             float upProjection = Vector3.Dot(contacts[i], Vector3.up); // Usa el eje global 'up'
-            contacts[i] = new Vector3(forwardProjection, rightProjection, upProjection);
-
+            contacts[i] = new Vector3(forwardProjection, upProjection, rightProjection);
         }
 
 
@@ -207,14 +106,14 @@ public class Observer : MonoBehaviour
         {
             for (float x = -horizontalRange; x <= horizontalRange; x += horizontalStep)
             {
-
-                Vector3 direction = vehicle.transform.forward + vehicle.transform.right * ((-horizontalRange / 2) + x) + vehicle.transform.up * y;// ((verticalRange / 2) + y);
+                // Componer la dirección inicial para los raycast
+                Vector3 direction = vehicle.transform.forward + vehicle.transform.right * ((-horizontalRange / 2) + x) + vehicle.transform.up * y;
 
                 // Normalizar la dirección para asegurar que la magnitud sea 1
                 direction.Normalize();
 
                 Ray ray = new Ray(lidarPosition, direction * 100);
-                //PARA VER LOS RAYOSDebug.DrawRay(lidarPosition, direction * 100, Color.red, 5);
+                //PARA VER LOS RAYOS: Debug.DrawRay(lidarPosition, direction * 100, Color.red, 5);
 
                 if (Physics.Raycast(ray, out RaycastHit hit, 200, terrainLayer))
                 {
@@ -236,7 +135,7 @@ public class Observer : MonoBehaviour
                         Mathf.Abs(upProjection) <= cubeSize / 2)
                     {
                         // particles.Add(hitPoint);
-                        particles.Add(new Vector3(forwardProjection, rightProjection, upProjection));
+                        particles.Add(new Vector3(forwardProjection, upProjection, rightProjection));
                     }
                 }
             }
@@ -271,89 +170,3 @@ public class Observer : MonoBehaviour
         writer.Close();
     }
 }
-//##############################################################
-//using UnityEngine;
-//using System.Collections.Generic;
-//using System;
-
-//public class Observer : MonoBehaviour
-//{
-//    public float cubeSize = 100.0f;
-//    public int pointsPerAxis = 20;  // Número de puntos a muestrear por eje
-//    public LayerMask terrainLayer;   // Capa que representa el terreno
-
-//    private List<Vector3> pointCloud = new List<Vector3>();
-//    float lastObservation = 0;
-//    void Update()
-//    {
-//        if (Time.time - lastObservation<10)
-//        {
-//            return;
-//        }
-//        lastObservation = Time.time;
-//        Time.timeScale = 0;
-//        // Actualiza la posición del cubo a la posición actual del vehículo
-//        Vector3 center = transform.position;
-
-//        // Limpia la nube de puntos anterior
-//        pointCloud.Clear();
-
-//        // Recorre el volumen definido por el cubo para realizar muestreos
-//        float halfSize = cubeSize / 2.0f;
-//        float stepSize = cubeSize / pointsPerAxis;
-
-//        for (int x = 0; x < pointsPerAxis; x++)
-//        {
-//            for (int y = 0; y < pointsPerAxis; y++)
-//            {
-//                for (int z = 0; z < pointsPerAxis; z++)
-//                {
-//                    // Calcula la posición de cada punto de muestreo dentro del cubo
-//                    Vector3 point = new Vector3(
-//                        center.x + (x * stepSize - halfSize),
-//                        center.y + (y * stepSize - halfSize),
-//                        center.z + (z * stepSize - halfSize)
-//                    );
-
-//                    // Realiza un Raycast desde arriba hacia abajo
-//                    if (Physics.Raycast(point + Vector3.up * halfSize, Vector3.down, out RaycastHit hit, cubeSize, terrainLayer))
-//                    {
-//                        // Si el Raycast impacta el terreno, agrega el punto a la nube de puntos
-//                        pointCloud.Add(hit.point);
-//                    }
-//                }
-//            }
-//        }
-//        //System.Threading.Thread.Sleep(10000);
-//        // Opcional: Guardar la nube de puntos en un archivo o utilizarla de alguna manera
-//        SavePointCloud();
-//        Time.timeScale = 1;
-//    } 
-
-//    void SavePointCloud()
-//    {
-//        // Ejemplo de cómo guardar la nube de puntos en un archivo (formato XYZ)
-//        string filePath =  "c:\\data\\pointCloud"+DateTime.Now.ToString("yyyyMMddHHmmssfff")+".txt";
-//        using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath))
-//        {
-//            foreach (Vector3 point in pointCloud)
-//            {
-//                file.WriteLine($"{point.x} {point.y} {point.z}");
-//            }
-//        }
-//    }
-
-//    void OnDrawGizmos()
-//    {
-//        // Dibujar el cubo de observación en la escena para visualizar el área de muestreo
-//        Gizmos.color = Color.green;
-//        Gizmos.DrawWireCube(transform.position, Vector3.one * cubeSize);
-
-//        // Dibujar los puntos de la nube de puntos
-//        Gizmos.color = Color.red;
-//        foreach (Vector3 point in pointCloud)
-//        {
-//            Gizmos.DrawSphere(point, 0.1f);
-//        }
-//    }
-//}

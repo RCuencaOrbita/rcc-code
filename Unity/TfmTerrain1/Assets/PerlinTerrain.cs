@@ -16,6 +16,13 @@ public class PerlinTerrain : MonoBehaviour
     {
         GenerateTerrain();
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        Renderer objectRenderer = GetComponent<Renderer>();
+
+        // Cambiamos el color del material al nuevo color
+        if (objectRenderer != null)
+        {
+            objectRenderer.material.color = Color.gray;
+        }
         this.gameObject.layer = LayerMask.NameToLayer("TERRENO");
         meshRenderer.receiveShadows = true;
         meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;

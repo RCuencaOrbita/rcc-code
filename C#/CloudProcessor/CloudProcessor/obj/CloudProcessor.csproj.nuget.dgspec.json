@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj": {}
+    "C:\\Users\\penka\\Documents\\Master\\TFM\\TFM\\Repo\\C#\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj": {
+    "C:\\Users\\penka\\Documents\\Master\\TFM\\TFM\\Repo\\C#\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj",
+        "projectUniqueName": "C:\\Users\\penka\\Documents\\Master\\TFM\\TFM\\Repo\\C#\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj",
         "projectName": "CloudProcessor",
-        "projectPath": "C:\\Repos\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj",
+        "projectPath": "C:\\Users\\penka\\Documents\\Master\\TFM\\TFM\\Repo\\C#\\CloudProcessor\\CloudProcessor\\CloudProcessor.csproj",
         "packagesPath": "C:\\Users\\penka\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\CloudProcessor\\CloudProcessor\\obj\\",
+        "outputPath": "C:\\Users\\penka\\Documents\\Master\\TFM\\TFM\\Repo\\C#\\CloudProcessor\\CloudProcessor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\penka\\AppData\\Roaming\\NuGet\\NuGet.Config",
